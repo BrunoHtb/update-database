@@ -5,7 +5,12 @@ from datetime import datetime
 from decouple import config
 
 def update_database():
-    file_name = r"C:\Users\0519\Documents\Padronizacao_Banco_Dados\updateGeral.sql"
+    with open("caminho_script_sql.txt", "r") as file:
+        file_path = file.readline().strip()
+
+    file_path = file_path.replace("\\\\", "\\")
+    
+    file_name = file_path
     commands = []
     db_host = config('DB_HOST', default='localhost')
     db_name = config('DB_NAME', default='Teste')
